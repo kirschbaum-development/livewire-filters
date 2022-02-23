@@ -31,11 +31,12 @@ php artisan vendor:publish --tag=livewire-filters-views
 ### The parent component
 
 ```php
+use App\Models\Post;
 use Livewire\Component;
 
 class PostsList extends Component
 {
-    public array $filters = [
+    public $filters = [
         'type' => ['text', 'link'],
     ];
 
@@ -69,7 +70,7 @@ class PostsList extends Component
 The simplest way to use the filters is from a component that defines all of the available filters. Additionally, if the component is used as a parent, you can pass down the default values of your filters into the individual filter components and avoid repeating code.
 
 ```php
-public array $filters = [
+public $filters = [
     'type' => ['text', 'link'],
     'status' => 'published',
     'tags' => '',
