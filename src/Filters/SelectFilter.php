@@ -1,6 +1,8 @@
 <?php
 
-namespace Kirschbaum\LivewireFilters;
+namespace Kirschbaum\LivewireFilters\Filters;
+
+use Kirschbaum\LivewireFilters\FilterComponent;
 
 class SelectFilter extends FilterComponent
 {

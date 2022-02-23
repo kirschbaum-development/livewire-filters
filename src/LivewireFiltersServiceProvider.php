@@ -2,6 +2,10 @@
 
 namespace Kirschbaum\LivewireFilters;
 
+use Kirschbaum\LivewireFilters\Filters\CheckboxFilter;
+use Kirschbaum\LivewireFilters\Filters\RadioFilter;
+use Kirschbaum\LivewireFilters\Filters\SelectFilter;
+use Kirschbaum\LivewireFilters\Filters\TextFilter;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
