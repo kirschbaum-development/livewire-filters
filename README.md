@@ -31,7 +31,7 @@ php artisan vendor:publish --tag=livewire-filters-views
 ### The parent component
 
 ```php
-use Livewire\Livewire\Component;
+use Livewire\Component;
 
 class PostsList extends Component
 {
