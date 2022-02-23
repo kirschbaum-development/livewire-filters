@@ -3,8 +3,8 @@
 namespace Kirschbaum\LivewireFilters\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Kirschbaum\LivewireFilters\LivewireFiltersServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {
