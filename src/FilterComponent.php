@@ -14,7 +14,7 @@ abstract class FilterComponent extends Component
 
     public mixed $value;
 
-    public function mount()
+    public function hydrate(): void
     {
         $this->initialValue = $this->value;
     }

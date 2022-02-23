@@ -28,21 +28,27 @@ php artisan vendor:publish --tag=livewire-filters-views
 
 ## Usage
 
-### The parent component
+### Example parent component
 
 ```php
 use App\Models\Post;
+use Kirschbaum\LivewireFilters\Concerns\HasFilters;
 use Livewire\Component;
 
 class PostsList extends Component
 {
-    public $filters = [
-        'type' => ['text', 'link'],
-    ];
+    use HasFilters;
 
     protected $listeners = [
         'postTypeUpdated' => 'handlePostTypeUpdate',
     ];
+
+    public function filters(): array
+    {
+        return [
+            'type' => ['text', 'link'],
+        ];
+    }
 
     public function handlePostTypeUpdate($value)
     {
@@ -59,28 +65,38 @@ class PostsList extends Component
     public function render()
     {
         return view('livewire.posts-list', [
+            'isFiltered' => $this->isFiltered,
             'posts' => $this->posts,
         ]);
     }
 }
 ```
 
-#### Defining your filters
+#### Apply `HasFilters` trait to your component
 
-The simplest way to use the filters is from a component that defines all of the available filters. Additionally, if the component is used as a parent, you can pass down the default values of your filters into the individual filter components and avoid repeating code.
+On your Livewire component, you should include the `HasFilters` trait. This will give you some helpers to work with filters in your component.
+
+#### Define your filters
+
+The simplest way to use the filters is from a component that defines all of the available filters. The `HasFilters` trait includes a `filter` method that should return an `array` of any filters you want to use.
 
 ```php
-public $filters = [
-    'type' => ['text', 'link'],
-    'status' => 'published',
-    'tags' => '',
-    'author' => '',
-];
+public function filters(): array
+{
+    return [
+        'type' => ['text', 'link'],
+        'status' => 'published',
+        'tags' => '',
+        'author' => '',
+    ];
+}
 ```
 
-#### Handling filter events
+When the component hydrates, the filters will be made available in a `$filters` variable.
 
-Filter components emit an event when there is a change that your component(s) can listen for and react to. Using the filters we defined, we can define event listeners and then handle those events as they happen.
+#### Handle filter events
+
+Filter components emit an event when there is a change that your component(s) can listen for and react to. Using the filters we defined, we can define event listeners and then handle those events as they happen. The `HasFilters` trait includes an `updateFilter` method that accepts the filter's unique key and the value to update it with. You are also welcome to directly update the `$filters` variable if you want.
 
 ```php
 protected $listeners = [
@@ -89,9 +105,15 @@ protected $listeners = [
 
 public function handlePostTypeUpdate($value)
 {
-    $this->filters['type'] = $value;
+    $this->updateFilter('type', $value);
 }
 ```
+
+#### Determining filtered status
+
+The `HasFilters` trait includes a computed property that you can use to determine if filters beyond the defaults have been applied. You can access this directly in your Livewire component by using `$this->isFiltered` or by passing it to your Livewire component through the `render` method.
+
+This property is handy if you want to change the color of a button, show/hide a specific section of your UI, or simply show a visual indicator that there are active filters being applied.
 
 ## Included filters
 
@@ -186,6 +208,49 @@ class DateFilter extends FilterComponent
     @endif
 </div>
 ```
+
+## Reference
+
+### `FilterComponent`
+
+### `HasFilters`
+
+#### `filters(): array`
+
+This method should be used on your Livewire component to define all of the filters you want to make available.
+
+```php
+public function filters(): array
+{
+    return [
+        'type' => ['active'],
+        'status' => 'published',
+        'author' => '',
+    ];
+}
+```
+
+#### `getFilter($key): mixed`
+
+Get the value of a specific filter.
+
+#### `getFilters(): array`
+
+Get all of the defined filters.
+
+#### `resetFilter($key): void`
+
+Reset a specific filter to its initial state.
+
+#### `resetFilters(): void`
+
+Reset all filters to their initial states.
+
+#### `updateFilter($key, $value): void`
+
+Update the value of a specific filter.
+
+#### `updateFilters($value): void`
 
 ## Changelog
 
