@@ -21,9 +21,9 @@ To get started, require the package via Composer:
 composer require kirschbaum-development/livewire-filters
 ```
 
-## Tailwind CSS
+## Publishing views
 
-The included filters are made with Tailwind CSS. If you use a different CSS framework we recommend that you publish the modal template and change the markup to include the required classes for your CSS framework.
+The included filters are made with simple Tailwind CSS styling. We recommend publishing the views and changing the markup to match whatever styling or CSS framework your project uses.
 
 ```bash
 php artisan vendor:publish --tag=livewire-filters-views
