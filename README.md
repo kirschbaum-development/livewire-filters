@@ -6,7 +6,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/kirschbaum-development/livewire-filters)](https://packagist.org/packages/kirschbaum-development/livewire-filters)
 [![Total Downloads](https://img.shields.io/packagist/dt/kirschbaum-development/livewire-filters)](https://packagist.org/packages/kirschbaum-development/livewire-filters)
-[![Actions Status](https://github.com/kirschbaum-development/livewire-filters/workflows/CI/badge.svg)](https://github.com/kirschbaum-development/livewire-filters/actions)
+[![Actions Status](https://github.com/kirschbaum-development/livewire-filters/workflows/run-tests/badge.svg)](https://github.com/kirschbaum-development/livewire-filters/actions)
 
 
 ## Requirements
@@ -23,7 +23,7 @@ composer require kirschbaum-development/livewire-filters
 
 ## Publishing views
 
-The included filters are made with Tailwind CSS styling with the Tailwind CSS Forms plugin. We recommend publishing the views and changing the markup to match whatever styling or CSS framework your project uses.
+The included filters are made with [Tailwind CSS](https://tailwindcss.com) and the [Tailwind CSS Forms plugin](https://github.com/tailwindlabs/tailwindcss-forms). We recommend publishing the views and changing the markup to match whatever styling or CSS framework your project uses.
 
 ```bash
 php artisan vendor:publish --tag=livewire-filters-views
@@ -31,7 +31,82 @@ php artisan vendor:publish --tag=livewire-filters-views
 
 ## Usage
 
+### The parent component
 
+#### Defining your filters
+
+The simplest way to use the filters is from a component that defines all of the available filters. Additionally, if the component is used as a parent, you can pass down the default values of your filters into the individual filter components.
+
+```php
+public array $filters = [
+    'type' => ['text', 'link'],
+    'status' => 'published',
+    'tags' => '',
+    'author' => '',
+];
+```
+
+#### Handling filter events
+
+Filter components will emit an event when there is a change that your component(s) can listen for and react to. Using the filters we defined, we can define listeners and then handle those events as they happen.
+
+```php
+protected $listeners = [
+    'postTypeUpdated' => 'handlePostTypeUpdate',
+];
+
+public function handlePostTypeUpdate($value)
+{
+    $this->filters['type'] = $value;
+}
+```
+
+## Included filters
+
+The package includes 4 basic filters that can be used in your Livewire components.
+
+### Checkbox filter
+
+```blade
+@livewire('livewire-filters-checkbox', [
+    'eventName' => 'postTypeUpdated',
+    'options' => ['text', 'link', 'audio', 'video'],
+    'value' => $filters['type']
+])
+```
+
+### Radio button filter
+
+```blade
+@livewire('livewire-filters-radio', [
+    'eventName' => 'postStatusUpdated',
+    'options' => ['published', 'draft'],
+    'value' => $filters['status']
+])
+```
+
+### Select menu filter
+
+```blade
+@livewire('livewire-filters-select', [
+    'eventName' => 'postAuthorUpdated',
+    'options' => ['John', 'Paul', 'Ringo', 'George'],
+    'value' => $filters['author']
+])
+```
+
+### Textbox filter
+
+```blade
+@livewire('livewire-filters-text', [
+    'eventName' => 'postTagsUpdated',
+    'value' => $filters['tags']
+])
+```
+
+## Making your own filters
+
+In addition to the included filters, you can also make additional filters to suit your needs.
 
 ## Changelog
 
