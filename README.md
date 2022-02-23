@@ -23,7 +23,7 @@ composer require kirschbaum-development/livewire-filters
 
 ## Publishing views
 
-The included filters are made with simple Tailwind CSS styling. We recommend publishing the views and changing the markup to match whatever styling or CSS framework your project uses.
+The included filters are made with Tailwind CSS styling with the Tailwind CSS Forms plugin. We recommend publishing the views and changing the markup to match whatever styling or CSS framework your project uses.
 
 ```bash
 php artisan vendor:publish --tag=livewire-filters-views
