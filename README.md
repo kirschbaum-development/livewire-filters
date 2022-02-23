@@ -105,7 +105,7 @@ protected $listeners = [
 
 public function handlePostTypeUpdate($value)
 {
-    $this->updateFilter('type', $value);
+    $this->filters['type'] = $value;
 }
 ```
 
@@ -208,49 +208,6 @@ class DateFilter extends FilterComponent
     @endif
 </div>
 ```
-
-## Reference
-
-### `FilterComponent`
-
-### `HasFilters`
-
-#### `filters(): array`
-
-This method should be used on your Livewire component to define all of the filters you want to make available.
-
-```php
-public function filters(): array
-{
-    return [
-        'type' => ['active'],
-        'status' => 'published',
-        'author' => '',
-    ];
-}
-```
-
-#### `getFilter($key): mixed`
-
-Get the value of a specific filter.
-
-#### `getFilters(): array`
-
-Get all of the defined filters.
-
-#### `resetFilter($key): void`
-
-Reset a specific filter to its initial state.
-
-#### `resetFilters(): void`
-
-Reset all filters to their initial states.
-
-#### `updateFilter($key, $value): void`
-
-Update the value of a specific filter.
-
-#### `updateFilters($value): void`
 
 ## Changelog
 
