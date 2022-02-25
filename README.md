@@ -127,12 +127,12 @@ The checkbox filter allows you to select any number of options. Every time a cha
 <livewire:livewire-filters-checkbox :filter="$filters['type']" />
 ```
 
-| Setting | Type   |
-|---------|--------|
-| key     | string |
-| options | array  |
-| default | array  |
-| value   | array  |
+| Setting | Type     | Example           |
+|---------|----------|-------------------|
+| key     | `string` | `'type'`          |
+| options | `array`  | `['a', 'b', 'c']` |
+| default | `array`  | `['a', 'b']`      |
+| value   | `array`  | `['b', 'c']`      |
 
 ### Radio button filter
 
@@ -142,12 +142,12 @@ The radio button filter allows you to select a single option from the list of op
 <livewire:livewire-filters-radio :filter="$filters['type']" />
 ```
 
-| Setting | Type   |
-|---------|--------|
-| key     | string |
-| options | array  |
-| default | string |
-| value   | string |
+| Setting | Type     | Example           |
+|---------|----------|-------------------|
+| key     | `string` | `'type'`          |
+| options | `array`  | `['a', 'b', 'c']` |
+| default | `string` | `'a'`             |
+| value   | `string` | `'b'`             |
 
 ### Select menu filter
 
@@ -157,12 +157,12 @@ The select menu filter allows you to select a single option from the list of opt
 <livewire:livewire-filters-select :filter="$filters['type']" />
 ```
 
-| Setting | Type   |
-|---------|--------|
-| key     | string |
-| options | array  |
-| default | string |
-| value   | string |
+| Setting | Type     | Example           |
+|---------|----------|-------------------|
+| key     | `string` | `'type'`          |
+| options | `array`  | `['a', 'b', 'c']` |
+| default | `string` | `'a'`             |
+| value   | `string` | `'b'`             |
 
 ### Text box filter
 
@@ -172,11 +172,11 @@ The text box filter allows you to type freeform text that you can use for filter
 <livewire:livewire-filters-text :filter="$filters['type']" />
 ```
 
-| Setting | Type   |
-|---------|--------|
-| key     | string |
-| default | string |
-| value   | string |
+| Setting | Type     | Example  |
+|---------|----------|----------|
+| key     | `string` | `'name'` |
+| default | `string` | `'John'` |
+| value   | `string` | `'Jane'` |
 
 ## `Filter` class
 
