@@ -4,24 +4,67 @@ namespace Kirschbaum\LivewireFilters;
 
 trait HasFilters
 {
+    public array $activeFilters = [];
+
     public array $filters = [];
 
-    public array $initialFilters = [];
+    public function emitResetEvent(): void
+    {
+        $this->emit('livewire-filters-reset');
+    }
 
     public function filters(): array
     {
         return [];
     }
 
-    public function getIsFilteredProperty(): bool
+    public function getFilterValue($key): mixed
     {
-        return $this->filters !== $this->initialFilters;
+        return $this->filters[$key]->value();
     }
 
-    public function hydrateHasFilters(): void
+    public function getFilterCountProperty(): int
     {
-        $this->filters = $this->filters();
+        return count($this->activeFilters);
+    }
 
-        $this->initialFilters = $this->filters;
+    public function getIsFilteredProperty(): bool
+    {
+        return count($this->activeFilters) > 0;
+    }
+
+    public function handleUpdateEvent($key, $payload): void
+    {
+        $this->setFilterValue($key, $payload);
+
+        $this->calculateActiveFilters($key);
+    }
+
+    public function initializeHasFilters(): void
+    {
+        foreach ($this->filters() as $filter) {
+            $this->filters[$filter->key()] = $filter;
+        }
+    }
+
+    public function setFilterValue($key, $value): void
+    {
+        $this->filters[$key]->value($value);
+    }
+
+    protected function calculateActiveFilters($key): void
+    {
+        if ($this->filters[$key]->isFiltered()) {
+            $this->activeFilters[$key] = 'active';
+        } else {
+            unset($this->activeFilters[$key]);
+        }
+    }
+
+    protected function getListeners(): array
+    {
+        return array_merge($this->listeners, [
+            'livewire-filters-updated' => 'handleUpdateEvent',
+        ]);
     }
 }
