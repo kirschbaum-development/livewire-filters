@@ -151,7 +151,7 @@ The radio button filter allows you to select a single option from the list of op
 
 ### Select menu filter
 
-The select menu filter allows you to select a single option from the list of options from a select menu. Every time a change is made, the filter will emit an event with the currently selected value.
+Similar to the radio button filter, the select menu filter allows you to select a single option from the list of options from a select menu. Every time a change is made, the filter will emit an event with the currently selected value.
 
 ```blade
 <livewire:livewire-filters-select :filter="$filters['type']" />
@@ -178,7 +178,7 @@ The text box filter allows you to type freeform text that you can use for filter
 | default | `string` | `'John'` |
 | value   | `string` | `'Jane'` |
 
-## `Filter` class
+## The `Filter` class
 
 The `Filter` class provides a fluent interface for defining filters in your Livewire component as well as retrieving information about the filter.
 
