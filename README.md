@@ -32,7 +32,7 @@ php artisan vendor:publish --tag=livewire-filters-views
 
 You can use filters in your Livewire component by including the `HasFilters` trait provided by the package.
 
-With the trait included, you can define a `filters` method that returns an array of `Filter` objects you want to use in your component. The included `Filter` class has a series of fluent methods for building up the specifics of each of your filters.
+With the trait included, define a `filters` method that returns an array of `Filter` objects you want to use in your component. The included `Filter` class has a series of fluent methods for building up the specifics of each of your filters.
 
 ```php
 use HasFilters;
@@ -55,17 +55,17 @@ With your component setup, you can include filters in the view file of your Live
 <livewire:livewire-filters-checkbox :filter="$filters['type']" />
 ```
 
-There is more information below about the included filters.
+There is more information below about the included filters in the package.
 
 ### Determining filtered status/count
 
-The `HasFilters` trait includes two computed properties that you can use to determine if there are active filters and how many of your filters are active. You can access these directly in your Livewire component by using `$this->isFiltered` or `$this->activeFilterCount`. You can also pass one or both of these properties to your Livewire component through the `render` method if you so choose.
+The `HasFilters` trait includes two computed properties you can use to determine if there are active filters and how many of your filters are currently active. You can access these directly in your Livewire component by using `$this->isFiltered` or `$this->activeFilterCount`. You can also pass one or both of these properties to your Livewire component through the `render` method if you so choose.
 
 These computed properties are handy if you want to change the color of a button, show/hide a specific section of your UI, show a badge of active filters, or simply show a visual indicator that there are active filters being applied.
 
 ### Getting filtered values
 
-Because the `$filters` array contains `Filter` objects, you will need to either access the `value` property, the `value()` method, or use the included `getFilterValue($key)` helper.
+Because the `$filters` array contains `Filter` objects, you will need to either access the `value` property, use the `value()` method, or use the included `getFilterValue($key)` helper method.
 
 ```php
 // Helper included in the HasFilters trait
@@ -127,6 +127,13 @@ The checkbox filter allows you to select any number of options. Every time a cha
 <livewire:livewire-filters-checkbox :filter="$filters['type']" />
 ```
 
+| Setting | Type   |
+|---------|--------|
+| key     | string |
+| options | array  |
+| default | array  |
+| value   | array  |
+
 ### Radio button filter
 
 The radio button filter allows you to select a single option from the list of options. Every time a change is made, the filter will emit an event with the currently checked value.
@@ -134,6 +141,13 @@ The radio button filter allows you to select a single option from the list of op
 ```blade
 <livewire:livewire-filters-radio :filter="$filters['type']" />
 ```
+
+| Setting | Type   |
+|---------|--------|
+| key     | string |
+| options | array  |
+| default | string |
+| value   | string |
 
 ### Select menu filter
 
@@ -143,6 +157,13 @@ The select menu filter allows you to select a single option from the list of opt
 <livewire:livewire-filters-select :filter="$filters['type']" />
 ```
 
+| Setting | Type   |
+|---------|--------|
+| key     | string |
+| options | array  |
+| default | string |
+| value   | string |
+
 ### Text box filter
 
 The text box filter allows you to type freeform text that you can use for filtering. Every time a change is made, the filter will emit an event with the value of the text field.
@@ -150,6 +171,12 @@ The text box filter allows you to type freeform text that you can use for filter
 ```blade
 <livewire:livewire-filters-text :filter="$filters['type']" />
 ```
+
+| Setting | Type   |
+|---------|--------|
+| key     | string |
+| default | string |
+| value   | string |
 
 ## `Filter` class
 
