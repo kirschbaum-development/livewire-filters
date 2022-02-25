@@ -25,10 +25,14 @@ class Filter
     public function __call($name, $arguments)
     {
         if ($name === 'default') {
-            $this->value = $arguments[0];
-            $this->initialValue = $arguments[0];
+            if (count($arguments) > 0) {
+                $this->value = $arguments[0];
+                $this->initialValue = $arguments[0];
 
-            return $this;
+                return $this;
+            }
+
+            return $this->initialValue;
         }
 
         if (property_exists($this, $name)) {
