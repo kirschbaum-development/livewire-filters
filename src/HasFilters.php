@@ -23,7 +23,7 @@ trait HasFilters
         return $this->filters[$key]->value();
     }
 
-    public function getFilterCountProperty(): int
+    public function getActiveFilterCountProperty(): int
     {
         return count($this->activeFilters);
     }
