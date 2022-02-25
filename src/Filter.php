@@ -4,17 +4,17 @@ namespace Kirschbaum\LivewireFilters;
 
 class Filter
 {
-    public string $key;
-
-    public array $options = [];
-
-    public mixed $value = '';
-
-    public mixed $initialValue = '';
+    public function __construct(
+        public string $key,
+        public ?array $options = [],
+        public mixed $value = '',
+        public mixed $initialValue = ''
+    ) {
+    }
 
     public static function make($key): self
     {
-        return (new static())->key($key);
+        return new static(key: $key);
     }
 
     public function isFiltered(): bool

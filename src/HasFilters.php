@@ -6,7 +6,7 @@ trait HasFilters
 {
     public array $activeFilters = [];
 
-    public array $filters = [];
+    public FilterCollection $filters;
 
     public function emitResetEvent(): void
     {
@@ -40,11 +40,13 @@ trait HasFilters
         $this->calculateActiveFilters($key);
     }
 
-    public function initializeHasFilters(): void
+    public function mountHasFilters(): void
     {
-        foreach ($this->filters() as $filter) {
-            $this->filters[$filter->key()] = $filter;
-        }
+        $filters = collect($this->filters())
+            ->flatMap(fn ($filter) => [$filter->key() => $filter])
+            ->all();
+
+        $this->filters = FilterCollection::make($filters);
     }
 
     public function setFilterValue($key, $value): void
