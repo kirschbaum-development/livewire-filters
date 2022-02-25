@@ -43,7 +43,7 @@ abstract class FilterComponent extends Component
     protected function getListeners(): array
     {
         return array_merge($this->listeners, [
-            'livewire-filters-reset' => 'resetValue'
+            'livewire-filters-reset' => 'resetValue',
         ]);
     }
 }
