@@ -198,6 +198,10 @@ If you would like to set the value of a filter, you can pass the value or an arr
 
 When defining a filter, you should use the `default` method to set the initial value of the filter. This will store the initial value on the object as well to help with determining the status of active filters as well as resetting the filter to its original state. Calling the `default` method without any arguments will return the initial value that you specified when you defined the filter.
 
+### `meta(array $values)`
+
+If you would like to set additional information on the filter to be used in the view file, you can pass an array of values into the `meta` method. Calling the `meta` method without any arguments will return the current array of meta information.
+
 ## Events
 
 ### `livewire-filters-reset`

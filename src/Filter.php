@@ -8,7 +8,8 @@ class Filter
         public string $key,
         public ?array $options = [],
         public mixed $value = '',
-        public mixed $initialValue = ''
+        public mixed $initialValue = '',
+        public array $meta = []
     ) {
     }
 
