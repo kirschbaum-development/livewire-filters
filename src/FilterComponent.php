@@ -10,6 +10,8 @@ abstract class FilterComponent extends Component
 
     public string $key = '';
 
+    public array $meta = [];
+
     public array $options = [];
 
     public mixed $value;
@@ -17,6 +19,7 @@ abstract class FilterComponent extends Component
     public function mount(Filter $filter): void
     {
         $this->key = $filter->key();
+        $this->meta = $filter->meta();
         $this->options = $filter->options();
         $this->value = $filter->value();
 
