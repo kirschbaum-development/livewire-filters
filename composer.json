@@ -1,6 +1,6 @@
 {
     "name": "kirschbaum-development/livewire-filters",
-    "description": "This is my package livewire-filters",
+    "description": "Livewire Filters is a series of Livewire components that provide you with the tools to do live filtering of your data from your own Livewire components.",
     "keywords": [
         "kirschbaum-development",
         "laravel",
