@@ -1,16 +1,16 @@
 <div>
     <div class="space-y-2">
-        @foreach ($options as $option)
+        @foreach ($options as $id => $option)
             <div class="flex items-center">
                 <input
                     type="checkbox"
-                    name="{{ $key }}-{{ $option }}"
+                    name="{{ $this->getOptionName($option) }}"
                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
-                    id="{{ $key }}-{{ $option }}"
+                    id="{{ $this->getOptionId($option) }}"
                     wire:model="value"
-                    value="{{ $option }}"
+                    value="{{ $this->getOptionValue($id, $option) }}"
                 >
-                <label for="{{ $key }}-{{ $option }}" class="ml-2 block text-sm text-gray-700"> {{ ucfirst($option) }} </label>
+                <label for="{{ $this->getOptionId($option) }}" class="ml-2 block text-sm text-gray-700">{{ $option }}</label>
             </div>
         @endforeach
     </div>
