@@ -2,6 +2,7 @@
 
 namespace Kirschbaum\LivewireFilters;
 
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 abstract class FilterComponent extends Component
@@ -31,6 +32,25 @@ abstract class FilterComponent extends Component
         $this->value = $this->initialValue;
 
         $this->emitFilterEvent();
+    }
+
+    public function getOptionId($value): string
+    {
+        return $this->key . '-' . strtolower(str_replace(' ', '_', $value));
+    }
+
+    public function getOptionName($value): string
+    {
+        return $this->key . '-' . strtolower(str_replace(' ', '_', $value));
+    }
+
+    public function getOptionValue($id, $value): mixed
+    {
+        if (Arr::isAssoc($this->options)) {
+            return $id;
+        }
+
+        return $value;
     }
 
     public function updatedValue(): void
