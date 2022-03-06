@@ -1,7 +1,7 @@
 <div class="flex items-center space-x-2">
     <select id="{{ $key }}" name="{{ $key }}" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm shrink-0" wire:model="value">
-        @foreach ($options as $option)
-            <option value="{{ $option }}">{{ ucfirst($option) }}</option>
+        @foreach ($options as $id => $option)
+            <option value="{{ $this->getOptionValue($id, $option) }}">{{ $option }}</option>
         @endforeach
     </select>
 
