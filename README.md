@@ -164,6 +164,21 @@ Similar to the radio button filter, the select menu filter allows you to select 
 | default | `string` | `'a'`             |
 | value   | `string` | `'b'`             |
 
+### Multiselect menu filter
+
+The multiselect menu filter allows you to select multiple options from a list of options. This implementation uses the built in html `multiple` boolean on a select input. Every time a change is made, the filter will emit an event with the currently selected value.
+
+```blade
+<livewire:livewire-filters-multiselect :filter="$filters['type']" />
+```
+
+| Setting | Type     | Example           |
+|---------|----------|-------------------|
+| key     | `string` | `'type'`          |
+| options | `array`  | `['a', 'b', 'c']` |
+| default | `array`  | `['a']`           |
+| value   | `array`  | `['b']`           |
+
 ### Text box filter
 
 The text box filter allows you to type freeform text that you can use for filtering. Every time a change is made, the filter will emit an event with the value of the text field.
