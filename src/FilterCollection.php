@@ -25,7 +25,7 @@ class FilterCollection implements ArrayAccess, Wireable
     public static function fromLivewire($value): self
     {
         $filters = collect($value)
-            ->flatMap(fn ($values, $key) => [$key => new Filter(...$values)])
+            ->flatMap(fn ($values, $key) => [$key => $values instanceof Filter ? $values : new Filter(...$values)])
             ->all();
 
         return new static($filters);
