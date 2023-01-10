@@ -34,7 +34,7 @@ abstract class FilterComponent extends Component
 
     protected function queryString(): array
     {
-        if (!config('livewire-filters.query_string_enabled')) {
+        if (! config('livewire-filters.query_string_enabled')) {
             return [];
         }
 
