@@ -26,6 +26,13 @@ The included filters are made with [Tailwind CSS](https://tailwindcss.com) and t
 php artisan vendor:publish --tag=livewire-filters-views
 ```
 
+### Publishing config
+
+Publishing the config file is only necessary to enable query string usage.
+```bash
+php artisan vendor:publish --tag=livewire-filters-config
+```
+
 ## Usage
 
 ### Define your filters
