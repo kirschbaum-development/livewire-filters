@@ -17,9 +17,9 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/contracts": "^9.0",
-        "illuminate/support": "^9.0",
+        "php": ">=8.0",
+        "illuminate/contracts": "^9.0|^10.0",
+        "illuminate/support": "^9.0|^10.0",
         "livewire/livewire": "^2.10",
         "spatie/laravel-package-tools": "^1.9.2"
     },
@@ -48,7 +48,10 @@
         "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
