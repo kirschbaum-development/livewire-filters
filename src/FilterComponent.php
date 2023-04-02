@@ -15,16 +15,34 @@ abstract class FilterComponent extends Component
 
     public array $options = [];
 
-    public mixed $value;
+    public mixed $value = null;
 
     public function mount(Filter $filter): void
     {
         $this->key = $filter->key();
         $this->meta = $filter->meta();
         $this->options = $filter->options();
-        $this->value = $filter->value();
 
-        $this->initialValue = $this->value;
+        if (config('livewire-filters.query_string_enabled')) {
+            $this->value = request()?->query($filter->key()) ?? $filter->value();
+        } else {
+            $this->value = $filter->value();
+        }
+
+        $this->initialValue = $filter->value();
+    }
+
+    protected function queryString(): array
+    {
+        if (! config('livewire-filters.query_string_enabled')) {
+            return [];
+        }
+
+        return [
+            'value' => [
+                'as' => $this->key,
+            ],
+        ];
     }
 
     public function resetValue(): void

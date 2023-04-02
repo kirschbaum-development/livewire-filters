@@ -16,6 +16,7 @@ class LivewireFiltersServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('livewire-filters')
+            ->hasConfigFile()
             ->hasViews();
     }
 
